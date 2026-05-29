@@ -1,0 +1,136 @@
+[project]
+site_name = "dtollib"
+site_description = "Experiment-facing DT-Open Layers acquisition layer for scientific instrumentation."
+site_url = "https://GraysonBellamy.github.io/dtollib/"
+repo_url = "https://github.com/GraysonBellamy/dtollib"
+repo_name = "GraysonBellamy/dtollib"
+edit_uri = "edit/main/docs/"
+docs_dir = "docs"
+site_dir = "site"
+nav = [
+    { Home = "index.md" },
+    { Installation = "installation.md" },
+    { Quickstart = [
+        { Async = "quickstart-async.md" },
+        { Sync = "quickstart-sync.md" },
+    ] },
+    { Guides = [
+        { Concepts = "concepts.md" },
+        { "Task specs" = "task-specs.md" },
+        { Channels = "channels.md" },
+        { "Continuous acquisition" = "continuous.md" },
+        { Triggers = "triggers.md" },
+        { Sinks = "sinks.md" },
+        { "Raw logging" = "raw-logging.md" },
+        { "Waveform output" = "waveform-output.md" },
+        { "Counter/timer" = "counter-timer.md" },
+        { Manager = "manager.md" },
+        { "Synchronized start" = "synchronized.md" },
+        { "Discovery & capabilities" = "discovery.md" },
+        { Configuration = "configuration.md" },
+        { Safety = "safety.md" },
+        { TEDS = "teds.md" },
+        { Testing = "testing.md" },
+        { CLI = "cli.md" },
+        { Troubleshooting = "troubleshooting.md" },
+    ] },
+    { "API reference" = [
+        { Overview = "api/index.md" },
+        { Sessions = "api/session.md" },
+        { "Task specs" = "api/tasks.md" },
+        { Channels = "api/channels.md" },
+        { Triggers = "api/triggers.md" },
+        { "Continuous & playback" = "api/streaming.md" },
+        { Sinks = "api/sinks.md" },
+        { "Discovery & capabilities" = "api/system.md" },
+        { Manager = "api/manager.md" },
+        { Configuration = "api/config.md" },
+        { TEDS = "api/teds.md" },
+        { "Strain & rosette" = "api/strain.md" },
+        { Units = "api/units.md" },
+        { "Sync facade" = "api/sync.md" },
+        { Testing = "api/testing.md" },
+        { Errors = "api/errors.md" },
+        { capi = "api/capi.md" },
+        { backend = "api/backend.md" },
+    ] },
+    { Contributing = [
+        { "Contributing guide" = "contributing.md" },
+        { "Binding the SDK" = "binding.md" },
+    ] },
+    { Internals = [
+        { Design = "design.md" },
+        { Decisions = "decisions.md" },
+        { "Implementation plan" = "implementation-plan.md" },
+        { "Hardware plan" = "plan-hardware-functional.md" },
+        { Changelog = "changelog.md" },
+    ] },
+]
+
+[project.theme]
+variant = "classic"
+features = [
+    "content.code.copy",
+    "content.code.annotate",
+    "navigation.instant",
+    "navigation.tracking",
+    "navigation.sections",
+    "navigation.indexes",
+    "search.highlight",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "deep purple"
+accent = "purple"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "deep purple"
+accent = "purple"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[project.plugins.mkdocstrings]
+default_handler = "python"
+
+[project.plugins.mkdocstrings.handlers.python]
+paths = ["src"]
+
+[project.plugins.mkdocstrings.handlers.python.options]
+docstring_style = "google"
+show_source = true
+show_root_heading = true
+merge_init_into_class = true
+separate_signature = true
+
+[project.markdown_extensions.admonition]
+
+[project.markdown_extensions.attr_list]
+
+[project.markdown_extensions.md_in_html]
+
+[project.markdown_extensions.pymdownx.details]
+
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+
+[project.markdown_extensions.pymdownx.inlinehilite]
+
+[project.markdown_extensions.pymdownx.snippets]
+base_path = [".", "docs"]
+check_paths = true
+
+[project.markdown_extensions.pymdownx.superfences]
+
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+
+[project.markdown_extensions.tables]
+
+[project.markdown_extensions.toc]
+permalink = true
