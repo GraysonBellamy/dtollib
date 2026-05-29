@@ -212,6 +212,11 @@ docstring-code-line-length = 88
 
 [tool.mypy]
 python_version = "3.13"
+# dtollib is a Windows-only library (Win32 message window + ctypes.WinDLL).
+# CI type-checks on Linux, so pin the analysis platform to win32 — otherwise
+# mypy treats every `sys.platform == "win32"` block as dead code and hides
+# WinDLL / get_last_error, which live behind platform guards in typeshed.
+platform = "win32"
 strict = true
 warn_unreachable = true
 warn_redundant_casts = true
