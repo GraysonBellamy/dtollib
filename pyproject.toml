@@ -263,6 +263,11 @@ follow_imports = "skip"
 include = ["src", "tests"]
 exclude = ["src/dtollib/_version.py", "**/__pycache__"]
 pythonVersion = "3.13"
+# dtollib is Windows-only; CI type-checks on Linux. Pin the analysis platform
+# to Windows (mirrors [tool.mypy] platform = "win32") so the sys.platform
+# Win32 blocks aren't treated as dead code and ctypes.WinDLL / get_last_error
+# resolve. Without this pyright strips the entire _message_window Win32 block.
+pythonPlatform = "Windows"
 typeCheckingMode = "strict"
 # Optional pyarrow is a runtime dependency without a complete stub surface.
 # Keep actionable unknown-type checks enabled below.
