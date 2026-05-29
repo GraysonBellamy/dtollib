@@ -6,6 +6,15 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-05-29
+
+First public release. `dtollib` is an experiment-facing, async-first
+DT-Open Layers acquisition layer for Data Translation DT9805/DT9806
+hardware. Continuous analog input (`record()`), single-value analog/digital
+output, counter/timer measurement, software thermocouple linearisation, and
+five CLIs (`dtol-discover` / `dtol-diag` / `dtol-capture` / `dtol-read` /
+`dtol-info`) are implemented and bench-verified against SDK V7.0.0.7.
+
 ### Changed (DIO port + bitmask model — **breaking**)
 
 - **Digital I/O is now port-shaped, matching the SDK.** `DigitalOutputLine` /
@@ -311,3 +320,6 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and
   `DtolSession`, `DtolManager`, scalar `poll()`. Phase 2.
 - Continuous AI, the §12.3.2 callback bridge, `BufferPlan`, `record()`,
   durable sinks. Phase 3.
+
+[Unreleased]: https://github.com/GraysonBellamy/dtollib/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/GraysonBellamy/dtollib/releases/tag/v0.1.0
