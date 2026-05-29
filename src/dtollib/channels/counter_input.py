@@ -90,7 +90,9 @@ class CounterFrequency(CounterInputBase):
 
     def __post_init__(self) -> None:
         """Reject a non-positive measurement window."""
-        super().__post_init__()
+        # Explicit two-arg super(): @dataclass(slots=True) recreates the class,
+        # which breaks zero-arg super() on Python < 3.14 (CPython gh-90562).
+        super(CounterFrequency, self).__post_init__()
         if self.gate_period_s is not None and self.gate_period_s <= 0.0:
             raise DtolValidationError(
                 f"CounterFrequency[{self.display_name}]: gate_period_s must be "

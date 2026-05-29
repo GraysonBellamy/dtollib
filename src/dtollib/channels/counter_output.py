@@ -61,7 +61,9 @@ class PulseTrainOutput(CounterOutputBase):
 
     def __post_init__(self) -> None:
         """Reject a non-positive frequency or an out-of-range duty cycle."""
-        super().__post_init__()
+        # Explicit two-arg super(): @dataclass(slots=True) recreates the class,
+        # which breaks zero-arg super() on Python < 3.14 (CPython gh-90562).
+        super(PulseTrainOutput, self).__post_init__()
         if self.frequency_hz <= 0.0:
             raise self._reject(f"frequency_hz must be positive (got {self.frequency_hz})")
         if not (0.0 < self.duty_cycle < 1.0):
@@ -93,7 +95,11 @@ class OneShotOutput(CounterOutputBase):
 
     def __post_init__(self) -> None:
         """Reject a non-positive pulse width."""
-        super().__post_init__()
+        # Explicit two-arg super(): @dataclass(slots=True) recreates the class,
+        # which breaks zero-arg super() on Python < 3.14 (CPython gh-90562).
+        # RepetitiveOneShotOutput inherits this method; ``self`` is a subtype
+        # of the recreated OneShotOutput, so the two-arg form stays correct.
+        super(OneShotOutput, self).__post_init__()
         if self.pulse_width_s <= 0.0:
             raise DtolValidationError(
                 f"{type(self).__name__}[{self.display_name}]: pulse_width_s must be "

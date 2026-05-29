@@ -59,7 +59,9 @@ class AnalogOutputVoltage(ChannelSpec):
 
     def __post_init__(self) -> None:
         """Reject inconsistent ranges before the SDK ever sees them."""
-        super().__post_init__()
+        # Explicit two-arg super(): @dataclass(slots=True) recreates the class,
+        # which breaks zero-arg super() on Python < 3.14 (CPython gh-90562).
+        super(AnalogOutputVoltage, self).__post_init__()
         if self.min_val >= self.max_val:
             raise self._reject(
                 f"min_val={self.min_val} must be strictly less than max_val={self.max_val}"

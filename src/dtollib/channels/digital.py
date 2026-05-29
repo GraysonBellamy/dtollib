@@ -97,7 +97,11 @@ class _DigitalPort(ChannelSpec):
 
     def __post_init__(self) -> None:
         # ChannelSpec wraps metadata immutably.
-        super().__post_init__()
+        # Explicit two-arg super(): @dataclass(slots=True) recreates the class,
+        # which breaks zero-arg super() on Python < 3.14 (CPython gh-90562).
+        # DigitalOutputPort/DigitalInputPort inherit this method; ``self`` is a
+        # subtype of the recreated _DigitalPort, so the two-arg form is correct.
+        super(_DigitalPort, self).__post_init__()
         # Normalise lines: accept DigitalLine or its to_dict mapping (the
         # latter arrives via channel_from_dict round-trips).
         raw_lines: tuple[Any, ...] = self.lines
@@ -148,7 +152,9 @@ class _DigitalPort(ChannelSpec):
 
     def to_dict(self) -> dict[str, Any]:
         """JSON-friendly mapping; serialises nested lines."""
-        data = super().to_dict()
+        # Two-arg super() — slots=True class recreation breaks zero-arg super()
+        # on Python < 3.14 (CPython gh-90562); see __post_init__ above.
+        data = super(_DigitalPort, self).to_dict()
         data["lines"] = [line.to_dict() for line in self.lines]
         return data
 

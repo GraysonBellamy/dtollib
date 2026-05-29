@@ -252,7 +252,9 @@ class AnalogInputVoltage(AnalogInputBase):
 
     def __post_init__(self) -> None:
         """Reject ``min_val >= max_val`` before the SDK does."""
-        super().__post_init__()
+        # Explicit two-arg super(): @dataclass(slots=True) recreates the class,
+        # which breaks zero-arg super() on Python < 3.14 (CPython gh-90562).
+        super(AnalogInputVoltage, self).__post_init__()
         if self.min_val >= self.max_val:
             raise DtolValidationError(
                 f"AnalogInputVoltage: min_val={self.min_val} must be "
@@ -316,7 +318,7 @@ class ThermocoupleInput(AnalogInputBase):
 
     def __post_init__(self) -> None:
         """Reject ranges outside NIST operating envelope, before SDK does."""
-        super().__post_init__()
+        super(ThermocoupleInput, self).__post_init__()
         if self.min_val_degc >= self.max_val_degc:
             raise DtolValidationError(
                 f"ThermocoupleInput: min_val_degc={self.min_val_degc} must be "
@@ -392,7 +394,7 @@ class RtdInput(AnalogInputBase):
 
     def __post_init__(self) -> None:
         """Enforce the custom-vs-standard coefficient contract."""
-        super().__post_init__()
+        super(RtdInput, self).__post_init__()
         is_custom = self.rtd_type is RtdType.CUSTOM
         has_ab = self.a is not None and self.b is not None
         if is_custom and not has_ab:
@@ -492,7 +494,7 @@ class CurrentInput(AnalogInputBase):
 
     def __post_init__(self) -> None:
         """Reject ``min_val >= max_val`` before the SDK does."""
-        super().__post_init__()
+        super(CurrentInput, self).__post_init__()
         if self.min_val >= self.max_val:
             raise DtolValidationError(
                 f"CurrentInput: min_val={self.min_val} must be strictly less "
@@ -536,7 +538,7 @@ class IepeInput(AnalogInputBase):
 
     def __post_init__(self) -> None:
         """Reject DC coupling and disabled excitation — invalid for IEPE."""
-        super().__post_init__()
+        super(IepeInput, self).__post_init__()
         if self.coupling is CouplingType.DC:
             raise DtolValidationError(
                 "IepeInput requires AC coupling (an IEPE sensor rides a DC bias "
@@ -602,7 +604,7 @@ class StrainInput(AnalogInputBase):
 
     def __post_init__(self) -> None:
         """Reject non-physical gage factor / resistance."""
-        super().__post_init__()
+        super(StrainInput, self).__post_init__()
         if self.gage_factor <= 0.0:
             raise DtolValidationError(
                 f"StrainInput: gage_factor must be positive (got {self.gage_factor})",
@@ -658,7 +660,7 @@ class BridgeInput(AnalogInputBase):
 
     def __post_init__(self) -> None:
         """Reject non-physical resistance."""
-        super().__post_init__()
+        super(BridgeInput, self).__post_init__()
         if self.nominal_resistance_ohms <= 0.0:
             raise DtolValidationError(
                 f"BridgeInput: nominal_resistance_ohms must be positive "
