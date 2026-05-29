@@ -304,7 +304,7 @@ provides-extras = ["docs", "parquet", "postgres"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "coverage", extras = ["toml"], specifier = ">=7.13.5" },
+    { name = "coverage", extras = ["toml"], specifier = ">=7.14.1" },
     { name = "hypothesis", specifier = ">=6.152.4" },
     { name = "mkdocstrings-python", specifier = ">=1.12" },
     { name = "mypy", specifier = ">=1.20" },
@@ -323,7 +323,7 @@ docs = [
 ]
 lint = [{ name = "ruff", specifier = ">=0.15.11" }]
 test = [
-    { name = "coverage", extras = ["toml"], specifier = ">=7.13.5" },
+    { name = "coverage", extras = ["toml"], specifier = ">=7.14.1" },
     { name = "hypothesis", specifier = ">=6.152.4" },
     { name = "pytest", specifier = ">=8.3" },
     { name = "pytest-cov", specifier = ">=6.0" },
