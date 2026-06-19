@@ -100,7 +100,7 @@ async def record_polled(
 
     async with anyio.create_task_group() as tg, rx, drop_rx:
         if isinstance(source, DtolManager):
-            tg.start_soon(
+            _ = tg.start_soon(
                 _manager_producer,
                 source,
                 tx,
@@ -111,7 +111,7 @@ async def record_polled(
                 overflow,
             )
         else:
-            tg.start_soon(
+            _ = tg.start_soon(
                 _session_producer,
                 source,
                 tx,
@@ -125,7 +125,7 @@ async def record_polled(
             yield Recording(stream=rx, summary=summary, rate_hz=rate_hz)
         finally:
             await tx.aclose()
-            tg.cancel_scope.cancel()
+            tg.cancel()
     summary.finished_at = datetime.now(UTC)
 
 

@@ -247,7 +247,7 @@ async def output_callback_bridge(  # noqa: PLR0915
             drain_done.set()
 
     async with anyio.create_task_group() as tg:
-        tg.start_soon(_drainer)
+        _ = tg.start_soon(_drainer)
         try:
             yield summary
         finally:
@@ -268,7 +268,7 @@ async def output_callback_bridge(  # noqa: PLR0915
                 chunk_q.put_nowait(SENTINEL)
                 await drain_done.wait()
                 summary.finished_at = datetime.now(UTC)
-        tg.cancel_scope.cancel()
+        tg.cancel()
 
     # ErrorPolicy.RAISE: surface the captured SDK error now — after the ordered
     # shutdown above, so it never races the driver thread or pool teardown.

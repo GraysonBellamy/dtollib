@@ -456,7 +456,7 @@ async def callback_bridge(  # noqa: PLR0915
         _log.warning("callback_bridge: SDK error routed by ErrorPolicy: %s", exc)
 
     async with anyio.create_task_group() as tg:
-        tg.start_soon(_drainer)
+        _ = tg.start_soon(_drainer)
         try:
             yield tx_recv, summary
         finally:
@@ -481,7 +481,7 @@ async def callback_bridge(  # noqa: PLR0915
                 #    closure to avoid a deallocator warning.
                 await tx_recv.aclose()
                 summary.finished_at = datetime.now(UTC)
-        tg.cancel_scope.cancel()
+        tg.cancel()
 
     # ErrorPolicy.RAISE: surface the captured SDK error to the caller only
     # now — after the ordered shutdown above has fully completed, so the
