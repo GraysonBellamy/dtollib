@@ -79,7 +79,7 @@ async def _read_one(
         async def _run() -> None:
             holder.append(await session.read_block(10, timeout=5.0))
 
-        tg.start_soon(_run)
+        _ = tg.start_soon(_run)
         for _ in range(5000):
             if backend.fire_buffer_done(hdass, fill=fill) is not None:
                 break
