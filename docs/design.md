@@ -3350,7 +3350,7 @@ dtol-info     = "dtollib.cli.info:main"
 [project.urls]
 Homepage = "https://github.com/GraysonBellamy/dtollib"
 Repository = "https://github.com/GraysonBellamy/dtollib"
-Documentation = "https://GraysonBellamy.github.io/dtollib/"
+Documentation = "https://dtollib.graysonbellamy.dev/"
 Issues = "https://github.com/GraysonBellamy/dtollib/issues"
 Changelog = "https://github.com/GraysonBellamy/dtollib/blob/main/CHANGELOG.md"
 ```
