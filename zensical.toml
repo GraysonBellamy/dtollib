@@ -1,7 +1,7 @@
 [project]
 site_name = "dtollib"
 site_description = "Experiment-facing DT-Open Layers acquisition layer for scientific instrumentation."
-site_url = "https://GraysonBellamy.github.io/dtollib/"
+site_url = "https://dtollib.graysonbellamy.dev/"
 repo_url = "https://github.com/GraysonBellamy/dtollib"
 repo_name = "GraysonBellamy/dtollib"
 edit_uri = "edit/main/docs/"
