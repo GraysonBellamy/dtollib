@@ -34,7 +34,7 @@ class TestConstruction:
 
     def test_kw_only_enforced(self) -> None:
         with pytest.raises(TypeError):
-            CounterEdgeCount(0)  # type: ignore[misc]
+            CounterEdgeCount(0)  # type: ignore[call-arg]
 
     def test_pulse_train_modes(self) -> None:
         ch = PulseTrainOutput(physical_channel=0, frequency_hz=1000.0, duty_cycle=0.25)
