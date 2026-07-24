@@ -26,7 +26,7 @@ dependency, so importing it costs nothing. Design reference:
 from dtollib import DtolConfig
 
 cfg = DtolConfig(default_sample_rate_hz=50_000.0, default_buffers=8)
-faster = cfg.replace(default_buffers=16)   # immutable copy with one change
+faster = cfg.replace(default_buffers=16)  # immutable copy with one change
 ```
 
 ## From the environment
@@ -49,7 +49,7 @@ values fall back to the dataclass default.
 ```python
 from dtollib import config_from_env
 
-cfg = config_from_env()   # reads DTOLLIB_* from os.environ
+cfg = config_from_env()  # reads DTOLLIB_* from os.environ
 ```
 
 ## DLL-path overrides

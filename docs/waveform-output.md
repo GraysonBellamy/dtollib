@@ -56,14 +56,20 @@ the `source` shape.
 import numpy as np
 
 from dtollib import (
-    AnalogOutputVoltage, BufferPlan, DataFlow, SubsystemType,
-    TaskSpec, Timing, WrapMode, open_device, play,
+    AnalogOutputVoltage,
+    BufferPlan,
+    DataFlow,
+    SubsystemType,
+    TaskSpec,
+    Timing,
+    WrapMode,
+    open_device,
+    play,
 )
 
 spec = TaskSpec(
     name="sine_1khz",
-    channels=[AnalogOutputVoltage(physical_channel=0, name="ao0",
-                                  safe_min=-5.0, safe_max=5.0)],
+    channels=[AnalogOutputVoltage(physical_channel=0, name="ao0", safe_min=-5.0, safe_max=5.0)],
     data_flow=DataFlow.CONTINUOUS,
     timing=Timing(rate_hz=100_000.0),
     buffers=BufferPlan(buffers=4, samples_per_buffer=250, wrap_mode=WrapMode.SINGLE),
@@ -83,19 +89,20 @@ async with play(session, period, confirm=True) as summary:
 ```python
 spec = TaskSpec(
     name="stream_out",
-    channels=[AnalogOutputVoltage(physical_channel=0, name="ao0",
-                                  safe_min=-5.0, safe_max=5.0)],
+    channels=[AnalogOutputVoltage(physical_channel=0, name="ao0", safe_min=-5.0, safe_max=5.0)],
     data_flow=DataFlow.CONTINUOUS,
     timing=Timing(rate_hz=100_000.0),
     buffers=BufferPlan(buffers=4, samples_per_buffer=250, wrap_mode=WrapMode.MULTIPLE),
 )
 
+
 async def chunks():
     phase = 0.0
-    for _ in range(400):                      # 400 chunks then exhaust
+    for _ in range(400):  # 400 chunks then exhaust
         t = phase + np.linspace(0, 0.0157, 250, endpoint=False)
         phase = t[-1]
-        yield 5.0 * np.sin(t)                 # (250,) volts
+        yield 5.0 * np.sin(t)  # (250,) volts
+
 
 session = await open_device(spec, autostart=False)
 async with play(session, chunks(), confirm=True) as summary:

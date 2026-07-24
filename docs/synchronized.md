@@ -26,10 +26,8 @@ from dtollib import AnalogInputVoltage, CounterEdgeCount, DtolManager, TaskSpec
 from dtollib.backend.dataacq import DataAcqBackend
 
 
-ai_spec = TaskSpec(name="ai", board="DT9806(00)",
-                   channels=[AnalogInputVoltage(physical_channel=0)])
-ct_spec = TaskSpec(name="ct", board="DT9806(00)",
-                   channels=[CounterEdgeCount(physical_channel=0)])
+ai_spec = TaskSpec(name="ai", board="DT9806(00)", channels=[AnalogInputVoltage(physical_channel=0)])
+ct_spec = TaskSpec(name="ct", board="DT9806(00)", channels=[CounterEdgeCount(physical_channel=0)])
 
 
 async def main() -> None:

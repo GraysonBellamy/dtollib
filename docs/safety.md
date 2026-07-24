@@ -62,7 +62,7 @@ async with await open_device(spec, autostart=False) as session:
     await session.write({"heater_command": 3.0}, confirm=True)
 
     # Out of safe band → confirm gate (raises without confirm):
-    await session.write({"heater_command": 8.0})            # DtolConfirmationRequiredError
+    await session.write({"heater_command": 8.0})  # DtolConfirmationRequiredError
     await session.write({"heater_command": 8.0}, confirm=True)  # OK (still inside device range)
 
     # Outside device range → hard error even with confirm:

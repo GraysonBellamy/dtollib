@@ -22,8 +22,7 @@ async def main() -> None:
     for board in await find_devices():
         print(board.name, board.model, board.driver_name, board.instance)
         for sub in await find_subsystems(board):
-            print(f"  {sub.type.value} element={sub.element} "
-                  f"channels={sub.num_channels}")
+            print(f"  {sub.type.value} element={sub.element} channels={sub.num_channels}")
 
 
 anyio.run(main)

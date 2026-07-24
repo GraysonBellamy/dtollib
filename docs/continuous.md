@@ -27,7 +27,13 @@ the recorder calls `commit()` itself. `spec.data_flow` must be `CONTINUOUS` or
 import anyio
 
 from dtollib import (
-    AnalogInputVoltage, BufferPlan, DataFlow, TaskSpec, Timing, open_device, record,
+    AnalogInputVoltage,
+    BufferPlan,
+    DataFlow,
+    TaskSpec,
+    Timing,
+    open_device,
+    record,
 )
 
 

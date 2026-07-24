@@ -19,9 +19,15 @@ from dtollib.testing import make_fake_backend
 
 spec = TaskSpec(
     name="t",
-    channels=[ThermocoupleInput(physical_channel=0, name="tc",
-                                thermocouple_type=ThermocoupleType.K,
-                                min_val_degc=-50.0, max_val_degc=200.0)],
+    channels=[
+        ThermocoupleInput(
+            physical_channel=0,
+            name="tc",
+            thermocouple_type=ThermocoupleType.K,
+            min_val_degc=-50.0,
+            max_val_degc=200.0,
+        )
+    ],
 )
 
 backend = make_fake_backend(include_dt9805=True)

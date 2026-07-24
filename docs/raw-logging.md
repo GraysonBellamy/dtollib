@@ -28,8 +28,14 @@ Design reference: [design.md §15.2](design.md#152-rawcountssink-the-tdms-equiva
 ```python
 import anyio
 from dtollib import (
-    AnalogInputVoltage, BufferPlan, DataFlow, OverflowPolicy, TaskSpec, Timing,
-    open_device, record,
+    AnalogInputVoltage,
+    BufferPlan,
+    DataFlow,
+    OverflowPolicy,
+    TaskSpec,
+    Timing,
+    open_device,
+    record,
 )
 from dtollib.sinks import RawCountsSink
 
@@ -51,7 +57,8 @@ async def main() -> None:
     ):
         async for block in recording.stream:
             await sink.write_raw(block)  # durable copy of the raw codes
-            ...                          # plus any live view / processing
+            ...  # plus any live view / processing
+
 
 anyio.run(main)
 ```

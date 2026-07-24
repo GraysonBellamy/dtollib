@@ -24,8 +24,8 @@ async def main() -> None:
     ai = TaskSpec(name="ai", channels=[AnalogInputVoltage(physical_channel=0, name="v0")])
 
     async with DtolManager() as mgr:
-        await mgr.add("ai", ai)          # registers, reserves the subsystem, commits
-        results = await mgr.poll(["ai"]) # fan-out poll
+        await mgr.add("ai", ai)  # registers, reserves the subsystem, commits
+        results = await mgr.poll(["ai"])  # fan-out poll
         print(results["ai"].value.values)
         # mgr closes every managed session on exit
 

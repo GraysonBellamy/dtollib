@@ -46,8 +46,8 @@ reachable without a dedicated attribute.
 
 ```python
 teds = read_strain_gage_teds(backend, hdass, 0)
-teds.gage_factor            # typed accessor
-teds.raw["gageTransSens"]   # any other struct field
+teds.gage_factor  # typed accessor
+teds.raw["gageTransSens"]  # any other struct field
 ```
 
 ## Volts → engineering conversion
@@ -60,12 +60,8 @@ from dtollib import strain_from_volts, bridge_value_from_volts
 
 # Gage/bridge parameters are read off the channel spec; you supply the
 # measured unstrained + strained voltages.
-epsilon = strain_from_volts(
-    backend, strain_spec, v_unstrained=0.0, v_strained=0.0025
-)
-value = bridge_value_from_volts(
-    backend, bridge_spec, v_unstrained=0.0, v_strained=0.01
-)
+epsilon = strain_from_volts(backend, strain_spec, v_unstrained=0.0, v_strained=0.0025)
+value = bridge_value_from_volts(backend, bridge_spec, v_unstrained=0.0, v_strained=0.01)
 ```
 
 For purely application-side rosette math (no SDK round-trip) see

@@ -23,8 +23,13 @@ All start-trigger specs subclass `TriggerSpec` and are wired into
 
 ```python
 from dtollib import (
-    AnalogInputVoltage, BufferPlan, DataFlow, ExternalDigitalStart, Edge,
-    TaskSpec, Timing,
+    AnalogInputVoltage,
+    BufferPlan,
+    DataFlow,
+    ExternalDigitalStart,
+    Edge,
+    TaskSpec,
+    Timing,
 )
 
 spec = TaskSpec(

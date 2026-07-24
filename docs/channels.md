@@ -122,9 +122,9 @@ from dtollib import AnalogOutputVoltage
 spec = AnalogOutputVoltage(
     physical_channel=0,
     name="heater_command",
-    min_val=-10.0,     # device electrical range, volts
+    min_val=-10.0,  # device electrical range, volts
     max_val=10.0,
-    safe_min=0.0,      # operator safe band (subset of device range)
+    safe_min=0.0,  # operator safe band (subset of device range)
     safe_max=5.0,
     requires_confirm=True,
 )
@@ -159,7 +159,7 @@ from dtollib import DigitalOutputPort, DigitalLine
 spec = DigitalOutputPort(
     physical_channel=0,
     name="dout",
-    safe_value=0b0000_0000,            # full-port byte held when not driven
+    safe_value=0b0000_0000,  # full-port byte held when not driven
     lines=(
         DigitalLine(bit=0, name="relay0"),
         DigitalLine(bit=3, name="armed", requires_confirm=True),
@@ -248,7 +248,7 @@ All multi-sensor specs share `AnalogInputBase`:
 from dtollib import find_subsystems, RtdInput, DtolCapabilityError
 
 # The clean way — query the capability first:
-caps = await session.capabilities()           # or backend.query_capabilities(hdass)
+caps = await session.capabilities()  # or backend.query_capabilities(hdass)
 if not caps.supports_multisensor:
     print("This board can't do RTD/strain/bridge — needs a DT9828/9829/9837.")
 
@@ -257,7 +257,7 @@ try:
     async with await open_device(spec_with_rtd, backend=backend) as session:
         ...
 except DtolCapabilityError as exc:
-    print(exc)   # names the sensor kind + the missing capability
+    print(exc)  # names the sensor kind + the missing capability
 ```
 
 ### TEDS and strain conversion
